@@ -6,3 +6,6 @@
 ## update2
 - setUp Navbar
 - Home Page Completed 
+
+## update 3
+- ProductList completed

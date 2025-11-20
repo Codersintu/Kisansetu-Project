@@ -2,7 +2,9 @@ import HomePageComponenet from "../component/HomePageComponenet"
 
 function Home() {
   return (
-    <div><HomePageComponenet/></div>
+    <div>
+      <HomePageComponenet/>
+    </div>
   )
 }
 

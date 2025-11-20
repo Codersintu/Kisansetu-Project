@@ -3,7 +3,7 @@ import ShoppingCart from "../assets/trolley.png"
 import logo from "../assets/logo.png"
 export default function Navbar() {
   return (
-    <div className="max-w-full max-h-[70px] bg-white shadow-sm py-3 px-6 flex items-center justify-between">
+    <div className="max-w-full max-h-[70px] bg-white shadow-sm py-3 px-6 flex items-center justify-between sticky top-0 z-50">
       
       {/* Logo */}
       <div className="flex items-center gap-2">

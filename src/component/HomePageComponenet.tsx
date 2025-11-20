@@ -13,7 +13,7 @@ function HomePageComponenet() {
         {/* LEFT CONTENT */}
         <div className="z-10 flex flex-col items-center justify-center pl-30 pt-10 max-w-3xl gap-4">
 
-          <img src={logo} alt="KisanSetu Logo" className="w-[400px]" />
+          <img src={logo} alt="KisanSetu Logo" className="w-[500px]" />
 
           <button className="bg-green-600 text-white px-5 py-2 rounded-lg cursor-pointer hover:bg-green-700">Learn more</button>
 
@@ -29,23 +29,21 @@ function HomePageComponenet() {
           </div>
         </div>
 
-        {/* RIGHT VEGETABLE IMAGES */}
-        {/* RIGHT VEGETABLE IMAGES */}
-        <div className="pointer-events-none absolute inset-0 flex justify-end items-center pr-10 z-20 ">
+
+        <div className="pointer-events-none absolute inset-0 flex justify-end items-center pr-10 z-0 ">
           <div className="relative w-[260px] h-[520px]">
 
-            {/* Top image – thoda upar, bilkul right */}
-            <div className="absolute top-56 right-0 w-32 h-32 rounded-full shadow-lg overflow-hidden border border-white">
+            <div className="absolute top-56 right-0 w-36 h-36 rounded-full shadow-lg overflow-hidden border border-white">
               <img src={veg1} className="w-full h-full object-cover" />
             </div>
 
-            {/* Middle image – center ke around, thoda left */}
+    
             <div className="absolute top-[550px] right-[500px] -translate-y-1/2 w-36 h-36 rounded-full shadow-lg overflow-hidden border border-white">
               <img src={veg2} className="w-full h-full object-cover" />
             </div>
 
-            {/* Bottom image – neeche, aur zyada left → curve follow karega */}
-            <div className="absolute bottom-0 right-64 w-32 h-32 rounded-full shadow-lg overflow-hidden border border-white">
+        
+            <div className="absolute bottom-0 right-64 w-36 h-36 rounded-full shadow-lg overflow-hidden border border-white">
               <img src={veg3} className="w-full h-full object-cover" />
             </div>
 
