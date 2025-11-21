@@ -19,7 +19,7 @@ export default function CategoryGrid() {
     <div className="w-full flex justify-center py-12">
       {/* Outer box (white card on top of bg pattern) */}
       <div className="">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {categories.map((c,id) => (
             <div
               key={id}

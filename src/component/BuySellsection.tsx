@@ -6,8 +6,8 @@ export default function BuySellSection() {
     <section className="relative w-full bg-white py-16 overflow-hidden">
 
       {/* BIG CURVED SHAPE ON RIGHT BOTTOM */}
-    <div className="pointer-events-none absolute left-0 top-0  w-[600px] h-[400px] bg-[#D8F1D7] rounded-r-full" />
-      <div className="pointer-events-none absolute right-[-260px] bottom-[-260px] w-[900px] h-[600px] bg-[#D8F1D7] rounded-full" />
+    <div className="pointer-events-none md:block hidden absolute left-0 top-0  w-[600px] h-[400px] bg-[#D8F1D7] rounded-r-full" />
+      <div className="pointer-events-none md:block hidden absolute right-[-260px] bottom-[-260px] w-[900px] h-[600px] bg-[#D8F1D7] rounded-full" />
 
       <div className="relative max-w-7xl mx-auto px-6 md:px-10">
 
