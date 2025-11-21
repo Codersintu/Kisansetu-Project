@@ -3,14 +3,14 @@ import ShoppingCart from "../assets/trolley.png"
 import logo from "../assets/logo.png"
 export default function Navbar() {
   return (
-    <div className="max-w-full max-h-[70px] bg-white shadow-sm py-3 px-6 flex items-center justify-between sticky top-0 z-50">
+    <div className="max-w-full max-h-[70px] bg-white shadow-sm py-3 md:px-6 px-2 flex items-center justify-between sticky top-0 z-50">
       
       {/* Logo */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center">
         <img 
           src={logo} 
           alt="KisanSetu" 
-          className="w-36 h-auto"
+          className="md:w-36 w-32 h-auto"
         />
       </div>
 
@@ -24,16 +24,16 @@ export default function Navbar() {
       </ul>
 
       {/* Right Icons */}
-      <div className="flex items-center gap-4">
-        <img src={User} className="cursor-pointer w-8 hover:text-green-600" />
-        <img src={ShoppingCart} className="cursor-pointer w-8 hover:text-green-600" />
+      <div className="flex items-center gap-4 ">
+        <img src={User} className="cursor-pointer md:block hidden w-8 hover:text-green-600" />
+        <img src={ShoppingCart} className="cursor-pointer md:block hidden w-8 hover:text-green-600" />
 
         {/* Buttons */}
-        <button className="bg-green-500 cursor-pointer text-white px-4 py-1.5 rounded-full hover:bg-green-600 transition">
+        <button className="bg-green-500 md:block hidden cursor-pointer text-white px-4 py-1.5 rounded-full hover:bg-green-600 transition">
           Sign up
         </button>
 
-        <button className="bg-gray-200 cursor-pointer text-gray-800 px-4 py-1.5 rounded-full hover:bg-gray-300 transition">
+        <button className="bg-gray-200 md:block hidden cursor-pointer text-gray-800 px-4 py-1.5 rounded-full hover:bg-gray-300 transition">
           Login
         </button>
       </div>
