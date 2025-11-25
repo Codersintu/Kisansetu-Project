@@ -18,3 +18,6 @@
 
 ## update 6 
 -- finally responsive for mobile entire home page
+
+## update 7
+-- finally created login and signup UI"

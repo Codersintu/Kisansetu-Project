@@ -5,6 +5,7 @@ import menu from "../assets/menu.png"
 import cancel from "../assets/cancel.png"
 import { useState } from "react";
 import {motion} from "motion/react"
+import { Link } from "react-router-dom"
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
@@ -35,13 +36,17 @@ export default function Navbar() {
         <img src={ShoppingCart} className="cursor-pointer  w-8 hover:text-green-600" />
 
         {/* Buttons */}
+        <Link to="/signup">
         <button className="bg-green-500 cursor-pointer text-white px-4 py-1.5 rounded-full hover:bg-green-600 transition">
           Sign up
         </button>
-
+        </Link>
+        
+        <Link to="/signin">
         <button className="bg-gray-200 cursor-pointer text-gray-800 px-4 py-1.5 rounded-full hover:bg-gray-300 transition">
           Login
         </button>
+        </Link>
 
       </div>
 
