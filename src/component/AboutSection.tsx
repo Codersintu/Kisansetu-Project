@@ -3,7 +3,7 @@ import aboutWaves from "../assets/g.png";
 
 export default function AboutSection() {
   return (
-    <section className="relative w-full bg-white overflow-hidden">
+    <section className="relative w-full bg-white overflow-hidden z-0">
       {/* TOP WAVES BACKGROUND */}
       <div
         className="absolute -top-10 left-0 w-full h-64 bg-no-repeat bg-cover bg-center z-0 pointer-events-none"

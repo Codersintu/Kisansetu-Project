@@ -15,3 +15,6 @@
 
 ## update 5
 -- Added AboutSection UI
+
+## update 6 
+-- finally responsive for mobile entire home page

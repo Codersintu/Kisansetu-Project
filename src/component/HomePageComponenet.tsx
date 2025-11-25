@@ -1,4 +1,4 @@
-import Navbar from "./Navbar"
+
 import logo from "../assets/logo.png"
 import veg1 from "../assets/veg1.png"
 import veg2 from "../assets/veg2.png"
@@ -6,8 +6,7 @@ import veg3 from "../assets/veg.png"
 
 function HomePageComponenet() {
   return (
-    <div className="w-full h-screen">
-      <Navbar />
+    
       <div className="flex-1 h-[calc(100vh-70px)] bg-green-100 md:rounded-[99%_10%_100%_0%/0%_0%_100%_100%] overflow-hidden ">
 
         {/* LEFT CONTENT */}
@@ -55,8 +54,6 @@ function HomePageComponenet() {
           <button className="px-10 border-2 font-bold rounded-2xl cursor-pointer">Log In</button>
          </div>
       </div>
-
-    </div>
   )
 }
 
