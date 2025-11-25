@@ -25,7 +25,9 @@ export default function Navbar() {
       <ul className="hidden md:flex items-center gap-8 text-gray-700 font-medium">
         <li className="cursor-pointer hover:text-green-600">Home</li>
         <li className="cursor-pointer hover:text-green-600">Services</li>
+        <Link to="/product">
         <li className="cursor-pointer hover:text-green-600">Products</li>
+        </Link>
         <li className="cursor-pointer hover:text-green-600">About us</li>
         <li className="cursor-pointer hover:text-green-600">Contact us</li>
       </ul>

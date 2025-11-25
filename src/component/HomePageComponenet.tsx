@@ -3,6 +3,7 @@ import logo from "../assets/logo.png"
 import veg1 from "../assets/veg1.png"
 import veg2 from "../assets/veg2.png"
 import veg3 from "../assets/veg.png"
+import { Link } from "react-router-dom"
 
 function HomePageComponenet() {
   return (
@@ -50,8 +51,12 @@ function HomePageComponenet() {
       
         </div>
          <div className="absolute md:hidden bottom-0 w-full flex justify-around mb-3">
+          <Link to="/signup">
           <button className="px-10 border-2 font-bold rounded-2xl cursor-pointer">SignUp</button>
+          </Link>
+          <Link to="/signin">
           <button className="px-10 border-2 font-bold rounded-2xl cursor-pointer">Log In</button>
+          </Link>
          </div>
       </div>
   )

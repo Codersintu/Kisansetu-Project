@@ -21,3 +21,6 @@
 
 ## update 7
 -- finally created login and signup UI"
+
+## update 8
+--created product page
