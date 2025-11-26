@@ -8,7 +8,7 @@ function Product() {
                 <div className="shadow-md rounded-2xl border-b border-b-gray-300"><img className='object-contain p-1' src={potato} alt="" /></div>
                 <div className="flex flex-col items-start gap-6">
                     <h1 className='text-4xl'>Title......</h1>
-                    <p>Price:16/kg</p>
+                    <p className='text-2xl'>Price:16/kg</p>
                     <div className="">
                         <p className='text-xl font-semibold'>Select Quantity:</p>
                         <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mt-2">

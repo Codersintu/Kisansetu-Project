@@ -7,8 +7,7 @@ import { Link } from "react-router-dom"
 
 function HomePageComponenet() {
   return (
-    
-      <div className="flex-1 h-[calc(100vh-70px)] bg-green-100 md:rounded-[99%_10%_100%_0%/0%_0%_100%_100%] overflow-hidden ">
+      <div id="home" className="flex-1 min-h-[calc(100vh-70px)] bg-green-100 md:rounded-[99%_10%_100%_0%/0%_0%_100%_100%] overflow-hidden ">
 
         {/* LEFT CONTENT */}
         <div className="z-10 flex flex-col items-center justify-center px-10 md:pl-30 md:pt-10 max-w-3xl gap-4">

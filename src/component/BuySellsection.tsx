@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 
 export default function BuySellSection() {
   return (
-    <section className="relative w-full bg-white py-16 overflow-hidden">
+    <section id="service" className="relative w-full bg-white py-16 overflow-hidden">
 
       {/* BIG CURVED SHAPE ON RIGHT BOTTOM */}
     <div className="pointer-events-none md:block hidden absolute left-0 top-0  w-[600px] h-[400px] bg-[#D8F1D7] rounded-r-full" />

@@ -24,3 +24,6 @@
 
 ## update 8
 --created product page
+
+## update 9
+-- added page navigate

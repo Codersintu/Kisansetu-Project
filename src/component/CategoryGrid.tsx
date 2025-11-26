@@ -2,6 +2,7 @@ import veg1 from "../assets/veg1.png"
 import veg2 from "../assets/veg2.png"
 import veg3 from "../assets/veg.png"
 import potato from "../assets/potato.png"
+import { Link } from "react-router-dom";
 
 const categories = [
     {id:1, label: "Vegetables", image: veg1 },
@@ -21,6 +22,7 @@ export default function CategoryGrid() {
       <div className="">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {categories.map((c,id) => (
+            <Link to="/product">
             <div
               key={id}
               className="w-64 h-64 rounded-2xl border border-gray-300 bg-[#f9f9f9] flex flex-col overflow-hidden"
@@ -35,6 +37,7 @@ export default function CategoryGrid() {
                 </span>
               </div>
             </div>
+            </Link>
           ))}
         </div>
       </div>

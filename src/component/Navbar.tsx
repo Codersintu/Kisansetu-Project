@@ -23,13 +23,14 @@ export default function Navbar() {
 
       {/* Center Menu */}
       <ul className="hidden md:flex items-center gap-8 text-gray-700 font-medium">
-        <li className="cursor-pointer hover:text-green-600">Home</li>
-        <li className="cursor-pointer hover:text-green-600">Services</li>
-        <Link to="/product">
-        <li className="cursor-pointer hover:text-green-600">Products</li>
-        </Link>
-        <li className="cursor-pointer hover:text-green-600">About us</li>
-        <li className="cursor-pointer hover:text-green-600">Contact us</li>
+        <a href="#home" className="cursor-pointer hover:text-green-600">Home</a>
+        <a href="#service" className="cursor-pointer hover:text-green-600">Services</a>
+      
+        <a href="#product" className="cursor-pointer hover:text-green-600">Products</a>
+
+        <a href="#about" className="cursor-pointer hover:text-green-600">About us</a>
+    
+        <a href="#about" className="cursor-pointer hover:text-green-600">Contact us</a>
       </ul>
 
       {/* Right Icons */}
@@ -57,11 +58,14 @@ export default function Navbar() {
 
     {isMenuOpen &&
      <motion.div initial={{x:-200,opacity:0}} animate={{x:0,opacity:1}} exit={{x:-200,opacity:0}} transition={{duration:0.3}} className={`fixed top-17 left-0 h-screen w-48 flex flex-col gap-6 px-2 pt-6 md:hidden list-none bg-gray-100 z-50 `}>
-        <li className="cursor-pointer  hover:text-green-600 text-xl font-semibold border-b border-gray-400 ">Home</li>
-        <li className="cursor-pointer  hover:text-green-600 text-xl font-semibold border-b border-gray-400 ">Services</li>
-        <li className="cursor-pointer  hover:text-green-600 text-xl font-semibold border-b border-gray-400 ">Products</li>
-        <li className="cursor-pointer  hover:text-green-600 text-xl font-semibold border-b border-gray-400 ">About us</li>
-        <li className="cursor-pointer  hover:text-green-600 text-xl font-semibold border-b border-gray-400 ">Contact us</li>
+        
+        <a href="#home" className="cursor-pointer  hover:text-green-600 text-xl font-semibold border-b border-gray-400 ">Home</a>
+        <a href="#service" className="cursor-pointer  hover:text-green-600 text-xl font-semibold border-b border-gray-400 ">Services</a>
+      
+        <a href="#product" className="cursor-pointer  hover:text-green-600 text-xl font-semibold border-b border-gray-400 ">Products</a>
+  
+        <a href="#about" className="cursor-pointer  hover:text-green-600 text-xl font-semibold border-b border-gray-400 ">About us</a>
+        <a href="#about" className="cursor-pointer  hover:text-green-600 text-xl font-semibold border-b border-gray-400 ">Contact us</a>
       </motion.div>
 }
 
