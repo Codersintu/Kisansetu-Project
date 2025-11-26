@@ -1,5 +1,5 @@
 import boss from "./assets/boss.jpg"
-import techboy from "./assets/techboy.png"
+import techboy from "./assets/techboy.jpg"
 import srijan from "./assets/srijan.png"
 
 const people = [
