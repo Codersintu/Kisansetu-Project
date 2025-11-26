@@ -1,7 +1,8 @@
 import boss from "./assets/boss.jpg"
 import techboy from "./assets/techboy.jpg"
 import srijan from "./assets/srijan.png"
-
+import banoj from "./assets/banoj.jpg"
+import sumi from "./assets/sumi.jpg"
 const people = [
   {
     id: 1,
@@ -32,9 +33,17 @@ const people = [
 
   {
     id: 4,
-    image: boss,
+    image: banoj,
     name: "BANOJ KUMAR",
-    title: "MARKET RESEARCHER",
+    title: "Logistic or TransPortation",
+    quote:
+      "The right insight at the right time can change an entire business.",
+  },
+  {
+    id: 5,
+    image: sumi,
+    name: "SUMIT KUMAR",
+    title: "MARKET RESEARCH ANALYST",
     quote:
       "The right insight at the right time can change an entire business.",
   },
