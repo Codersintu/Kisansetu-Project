@@ -6,13 +6,12 @@ import TeamMember from "../component/TeamMember"
 
 function Home() {
   return (
-    <div>
+    <div className="">
       <HomePageComponenet/>
            <ProductList/>
            <BuySellSection/>
            <TeamMember/>
            <AboutSection/>
-
     </div>
   )
 }

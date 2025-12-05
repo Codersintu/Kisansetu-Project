@@ -13,6 +13,7 @@ export default function Navbar() {
     <div className="max-w-full max-h-[70px] bg-white shadow-sm py-3 md:px-6 px-2 md:flex md:items-center md:justify-between flex justify-between sticky top-0 z-50">
       
       {/* Logo */}
+      <Link to="/">
       <div className="flex items-center">
         <img 
           src={logo} 
@@ -20,6 +21,7 @@ export default function Navbar() {
           className="md:w-36 w-32 h-auto"
         />
       </div>
+      </Link>
 
       {/* Center Menu */}
       <ul className="hidden md:flex items-center gap-8 text-gray-700 font-medium">

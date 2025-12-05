@@ -14,8 +14,9 @@ function HomePageComponenet() {
 
           <img src={logo} alt="KisanSetu Logo" className="md:w-[500px] w-[260px]" />
 
-          <button className="bg-green-600 text-white md:px-5 px-4 py-2 rounded-lg cursor-pointer hover:bg-green-700">Learn more</button>
-
+          <Link to="/category">
+          <button className="bg-green-600 text-white md:px-5 px-4 py-2 rounded-lg cursor-pointer hover:bg-green-700">Start Buy</button>
+           </Link>
           <div className="">
             <h1 className="md:text-4xl text-2xl font-bold text-black">
               Freshness you can trust.

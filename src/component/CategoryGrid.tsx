@@ -17,12 +17,12 @@ const categories = [
 
 export default function CategoryGrid() {
   return (
-    <div className="w-full flex justify-center py-12 z-0">
+    <div className="w-full flex justify-center py-12 z-0 ">
       {/* Outer box (white card on top of bg pattern) */}
       <div className="">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {categories.map((c,id) => (
-            <Link to="/product">
+            <Link to="/category">
             <div
               key={id}
               className="w-64 h-64 rounded-2xl border border-gray-300 bg-[#f9f9f9] flex flex-col overflow-hidden"
