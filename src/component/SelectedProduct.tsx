@@ -4,15 +4,14 @@ import veg2 from "../assets/veg2.png";
 import veg3 from "../assets/veg.png";
 import potato from "../assets/potato.png";
 
-// ---------- Data types ----------
+
 interface Category {
   id: number;
   label: string;
   quantity: string;
-  image: string; // path to image
+  image: string;
 }
 
-// ---------- Sample data (same as yours, cleaned) ----------
 const categories: Category[] = [
   { id: 1, label: "Brinjal with freshness", quantity: "1KG", image: veg1 },
   { id: 2, label: "Natural Potato", quantity: "1KG", image: veg2 },
@@ -22,32 +21,40 @@ const categories: Category[] = [
   { id: 6, label: "Cucumber, fresh and green", quantity: "1KG", image: veg2 },
   { id: 7, label: "Garlic (fresh in winter)", quantity: "1KG", image: veg3 },
   { id: 8, label: "Potato from Uganda", quantity: "1KG", image: potato },
+  { id: 9, label: "Brinjal with freshness", quantity: "1KG", image: veg1 },
+  { id: 10, label: "Natural Potato", quantity: "500gm", image: veg2 },
+  { id: 11, label: "Radish, white and clean", quantity: "1KG", image: veg3 },
+  { id: 12, label: "Green chilli fresh", quantity: "1KG", image: potato },
+  { id: 13, label: "Red Tomato with freshness", quantity: "1KG", image: veg1 },
+  { id: 14, label: "Cucumber, fresh and green", quantity: "1KG", image: veg2 },
+  { id: 15, label: "Garlic (fresh in winter)", quantity: "10KG", image: veg3 },
+  { id: 16, label: "Potato from Uganda", quantity: "200gm", image: potato },
 ];
 
 export default function SelectedProduct() {
   const [cart, setCart] = useState<Record<number, number>>({});
 
-  const isInCart = (id: number) => typeof cart[id] === "number" && cart[id] > 0;
-  const getQty=(id:number)=>cart[id] ?? 0
-  function addToCart(id:number) {
-        setCart((prev)=>({...prev,[id]:1}))
+  const isInCart=(id:number)=>typeof cart[id]==="number" && cart[id]>0
+  const getQty=(id:number)=>cart[id]??0
+  function addToCart(id:number){
+    setCart((prev)=>({...prev,[id]:1}))
   }
 
   function increment(id:number){
-    setCart((prev)=>({...prev,[id]:(prev[id] ?? 0)+1}))
-
+    setCart((prev)=>({...prev,[id]:(prev[id]??0)+1}))
   }
+
   function decrement(id:number){
     setCart((prev)=>{
-      const current=prev[id]
-      if (current <= 1) {
-        const copy={...prev}
-        delete copy[id];
-        return copy
-      }
+    const current=prev[id]??0
+    if (current<=1) {
+      const copy={...prev}
+      delete copy[id]
+      return copy
+    }
 
-      return ({...prev,[id]:current -1})
-    })
+    return ({...prev,[id]:current-1})
+  })
   }
 
 
@@ -58,14 +65,14 @@ export default function SelectedProduct() {
           Buy Vegetable Online
         </h1>
 
-        <div className="grid md:grid-cols-4 grid-cols-1 gap-6 mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-5">
           {categories.map((c) => (
             <div
               key={c.id}
-              className="w-3xs h-96 shadow-2xs p-5 border border-green-500 rounded-2xl flex flex-col gap-5"
+              className="w-64 min-h-80 shadow-2xs p-5 border border-green-500 rounded-2xl flex flex-col gap-5"
             >
               <div className="flex-1 flex items-center justify-center">
-                <img src={c.image} alt={c.label} className="max-h-36 object-contain" />
+                <img src={c.image} alt={c.label} className="object-contain hover:scale-110 transition duration-300" />
               </div>
 
               <div>
@@ -98,27 +105,6 @@ export default function SelectedProduct() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Optional: small cart preview */}
-        <div className="mt-6">
-          <h2 className="font-semibold">Cart preview</h2>
-          <div>
-            {Object.keys(cart).length === 0 ? (
-              <p className="text-sm">Cart is empty</p>
-            ) : (
-              <ul className="text-sm">
-                {Object.entries(cart).map(([id, qty]) => {
-                  const found = categories.find((x) => x.id === Number(id));
-                  return (
-                    <li key={id}>
-                      {found ? found.label : `Product ${id}`}: {qty}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
         </div>
       </div>
     </div>
