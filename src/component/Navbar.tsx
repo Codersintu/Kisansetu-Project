@@ -1,4 +1,4 @@
-
+import person from "../assets/user.png"
 import ShoppingCart from "../assets/trolley.png"
 import logo from "../assets/logo.png"
 import menu from "../assets/menu.png"
@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react"
 import { Link, useLocation } from "react-router-dom"
 import GeoLocation from "./GeoLocation";
+import Cart from "./Cart"
 const placeholderTexts = [
   "apple juice",
   "milk",
@@ -14,14 +15,17 @@ const placeholderTexts = [
   "fresh vegetables",
   "chips"
 ];
-export default function Navbar() {
+interface navbarprops{
+  user:boolean
+}
+export default function Navbar({user}:navbarprops) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isCartOpen, setIsCartOpen] = useState(false);
   const [locationCard,setlocationCard]=useState(false)
   const [fade, setFade] = useState(false)
   const {Location,Error,refresh}=GeoLocation()
   const location = useLocation();
   const isProductPage = location.pathname === "/category";
-
   const [index, setIndex] = useState(0);
 
   if(Error){
@@ -100,9 +104,13 @@ export default function Navbar() {
 
         {/* Right Icons */}
         <div className="hidden md:flex items-center gap-4">
-          <img src={ShoppingCart} className="cursor-pointer  w-8 hover:text-green-600" />
+
+          <img onClick={()=>setIsCartOpen(true)} src={ShoppingCart} className="cursor-pointer  w-8 hover:text-green-600" />
 
           {/* Buttons */}
+          {user===true ?
+          <img className="w-8 h-8" src={person} alt="" />:
+          <>
           <Link to="/signup">
             <button className="bg-green-500 cursor-pointer text-white px-4 py-1.5 rounded-full hover:bg-green-600 transition">
               Sign up
@@ -114,7 +122,8 @@ export default function Navbar() {
               Login
             </button>
           </Link>
-
+          </>
+      }
         </div>
 
         <div className="md:hidden w-10" onClick={() => setIsMenuOpen(!isMenuOpen)}>{isMenuOpen ? <img src={cancel} alt="" /> : <img src={menu} alt="" />}</div>
@@ -168,7 +177,7 @@ export default function Navbar() {
               </div>
 
               {/* ENABLE BUTTON */}
-              <button onClick={GeoLocation} className="px-4 py-1.5 text-red-600 border border-red-300 rounded-full cursor-pointer hover:bg-red-100 font-medium">
+              <button onClick={refresh} className="px-4 py-1.5 text-red-600 border border-red-300 rounded-full cursor-pointer hover:bg-red-100 font-medium">
                 Enable
               </button>
 
@@ -178,6 +187,8 @@ export default function Navbar() {
         </div>
       </div>
 }
+{isCartOpen &&
+   <Cart setIsCartOpen={setIsCartOpen}/>}
     </>
   );
 }

@@ -8,14 +8,15 @@ import Product from './pages/Product'
 import SelectedProduct from './component/SelectedProduct'
 
 function App() {
- 
+ const user=true
 
   return (
     <>
-    <Navbar/>
+    <Navbar user={user}/>
     
     <Routes>
-      <Route path='/' element={<Home/>}/>
+      {user===true &&
+      <Route path='/' element={<Home/>}/>}
       <Route path='/signin' element={<SignIn/>}/>
       <Route path='/signup' element={<SignUp/>}/>
       <Route path='/category' element={<SelectedProduct/>}/>

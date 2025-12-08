@@ -4,11 +4,14 @@ import './index.css'
 import './App.css'
 import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
+import { RecoilRoot } from 'recoil'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
+    <RecoilRoot>
     <App />
+    </RecoilRoot>
     </BrowserRouter>
   </StrictMode>,
 )

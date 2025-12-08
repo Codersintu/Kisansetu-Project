@@ -1,38 +1,42 @@
-import{ useState } from "react";
+
 import veg1 from "../assets/veg1.png";
 import veg2 from "../assets/veg2.png";
 import veg3 from "../assets/veg.png";
 import potato from "../assets/potato.png";
-
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { CartItem } from "../atom";
 
 interface Category {
   id: number;
   label: string;
   quantity: string;
   image: string;
+  price:number
 }
 
-const categories: Category[] = [
-  { id: 1, label: "Brinjal with freshness", quantity: "1KG", image: veg1 },
-  { id: 2, label: "Natural Potato", quantity: "1KG", image: veg2 },
-  { id: 3, label: "Radish, white and clean", quantity: "1KG", image: veg3 },
-  { id: 4, label: "Green chilli fresh", quantity: "1KG", image: potato },
-  { id: 5, label: "Red Tomato with freshness", quantity: "1KG", image: veg1 },
-  { id: 6, label: "Cucumber, fresh and green", quantity: "1KG", image: veg2 },
-  { id: 7, label: "Garlic (fresh in winter)", quantity: "1KG", image: veg3 },
-  { id: 8, label: "Potato from Uganda", quantity: "1KG", image: potato },
-  { id: 9, label: "Brinjal with freshness", quantity: "1KG", image: veg1 },
-  { id: 10, label: "Natural Potato", quantity: "500gm", image: veg2 },
-  { id: 11, label: "Radish, white and clean", quantity: "1KG", image: veg3 },
-  { id: 12, label: "Green chilli fresh", quantity: "1KG", image: potato },
-  { id: 13, label: "Red Tomato with freshness", quantity: "1KG", image: veg1 },
-  { id: 14, label: "Cucumber, fresh and green", quantity: "1KG", image: veg2 },
-  { id: 15, label: "Garlic (fresh in winter)", quantity: "10KG", image: veg3 },
-  { id: 16, label: "Potato from Uganda", quantity: "200gm", image: potato },
+export const categories: Category[] = [
+  { id: 1, label: "Brinjal with freshness", quantity: "1KG", image: veg1,price:40 },
+  { id: 2, label: "Natural Potato", quantity: "1KG", image: veg2,price:40 },
+  { id: 3, label: "Radish, white and clean", quantity: "1KG", image: veg3,price:40 },
+  { id: 4, label: "Green chilli fresh", quantity: "1KG", image: potato,price:40 },
+  { id: 5, label: "Red Tomato with freshness", quantity: "1KG", image: veg1 ,price:40},
+  { id: 6, label: "Cucumber, fresh and green", quantity: "1KG", image: veg2,price:40 },
+  { id: 7, label: "Garlic (fresh in winter)", quantity: "1KG", image: veg3,price:40 },
+  { id: 8, label: "Potato from Uganda", quantity: "1KG", image: potato,price:40 },
+  { id: 9, label: "Brinjal with freshness", quantity: "1KG", image: veg1,price:40 },
+  { id: 10, label: "Natural Potato", quantity: "500gm", image: veg2,price:40 },
+  { id: 11, label: "Radish, white and clean", quantity: "1KG", image: veg3,price:40 },
+  { id: 12, label: "Green chilli fresh", quantity: "1KG", image: potato,price:40 },
+  { id: 13, label: "Red Tomato with freshness", quantity: "1KG", image: veg1,price:40 },
+  { id: 14, label: "Cucumber, fresh and green", quantity: "1KG", image: veg2,price:40 },
+  { id: 15, label: "Garlic (fresh in winter)", quantity: "10KG", image: veg3,price:40 },
+  { id: 16, label: "Potato from Uganda", quantity: "200gm", image: potato,price:40 },
 ];
 
 export default function SelectedProduct() {
-  const [cart, setCart] = useState<Record<number, number>>({});
+  const setCart=useSetRecoilState<Record<number, number>>(CartItem)
+  const cart=useRecoilValue<Record<number, number>>(CartItem)
+  console.log(cart)
 
   const isInCart=(id:number)=>typeof cart[id]==="number" && cart[id]>0
   const getQty=(id:number)=>cart[id]??0
@@ -82,12 +86,8 @@ export default function SelectedProduct() {
               </div>
 
               <div className="flex justify-between items-center">
-                <p>💰 35</p>
+                <p>💰{c.price}</p>
 
-                {/*
-                  If product is in cart, show quantity controls for *that product*.
-                  Otherwise show ADD button.
-                */}
                 {isInCart(c.id) ? (
                   <div className="flex items-center border bg-green-700 px-5 py-2 gap-2 text-white rounded-2xl">
                     <button className="cursor-pointer" onClick={() => decrement(c.id)}>-</button>
