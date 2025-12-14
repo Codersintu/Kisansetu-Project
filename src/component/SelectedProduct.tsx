@@ -1,42 +1,16 @@
-
 import veg1 from "../assets/veg1.png";
-import veg2 from "../assets/veg2.png";
-import veg3 from "../assets/veg.png";
-import potato from "../assets/potato.png";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { CartItem } from "../atom";
-
-interface Category {
-  id: number;
-  label: string;
-  quantity: string;
-  image: string;
-  price:number
-}
-
-export const categories: Category[] = [
-  { id: 1, label: "Brinjal with freshness", quantity: "1KG", image: veg1,price:40 },
-  { id: 2, label: "Natural Potato", quantity: "1KG", image: veg2,price:40 },
-  { id: 3, label: "Radish, white and clean", quantity: "1KG", image: veg3,price:40 },
-  { id: 4, label: "Green chilli fresh", quantity: "1KG", image: potato,price:40 },
-  { id: 5, label: "Red Tomato with freshness", quantity: "1KG", image: veg1 ,price:40},
-  { id: 6, label: "Cucumber, fresh and green", quantity: "1KG", image: veg2,price:40 },
-  { id: 7, label: "Garlic (fresh in winter)", quantity: "1KG", image: veg3,price:40 },
-  { id: 8, label: "Potato from Uganda", quantity: "1KG", image: potato,price:40 },
-  { id: 9, label: "Brinjal with freshness", quantity: "1KG", image: veg1,price:40 },
-  { id: 10, label: "Natural Potato", quantity: "500gm", image: veg2,price:40 },
-  { id: 11, label: "Radish, white and clean", quantity: "1KG", image: veg3,price:40 },
-  { id: 12, label: "Green chilli fresh", quantity: "1KG", image: potato,price:40 },
-  { id: 13, label: "Red Tomato with freshness", quantity: "1KG", image: veg1,price:40 },
-  { id: 14, label: "Cucumber, fresh and green", quantity: "1KG", image: veg2,price:40 },
-  { id: 15, label: "Garlic (fresh in winter)", quantity: "10KG", image: veg3,price:40 },
-  { id: 16, label: "Potato from Uganda", quantity: "200gm", image: potato,price:40 },
-];
+import { CartItem, ProductItem, type ProductItemProps } from "../atom";
+import { useEffect } from "react";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
 
 export default function SelectedProduct() {
+  const productsItem=useRecoilValue(ProductItem)
+  const setproductItem=useSetRecoilState(ProductItem)
   const setCart=useSetRecoilState<Record<number, number>>(CartItem)
   const cart=useRecoilValue<Record<number, number>>(CartItem)
-  console.log(cart)
+
 
   const isInCart=(id:number)=>typeof cart[id]==="number" && cart[id]>0
   const getQty=(id:number)=>cart[id]??0
@@ -61,6 +35,16 @@ export default function SelectedProduct() {
   })
   }
 
+  useEffect(()=>{
+    (async()=>{
+      const response=await axios.get(`${BACKEND_URL}/api/post/all`)
+      const data=response.data.products || [];
+      const sortedData=data.sort((a:ProductItemProps,b:ProductItemProps)=>new Date(b.createdAt).getTime()-new Date(a.createdAt).getTime())
+      setproductItem(sortedData)
+      localStorage.setItem("productscached",JSON.stringify(sortedData))
+    })()
+  },[productsItem.length,setproductItem])
+
 
   return (
     <div className="w-full flex justify-center">
@@ -70,33 +54,33 @@ export default function SelectedProduct() {
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-5">
-          {categories.map((c) => (
+          {productsItem.map((item) => (
             <div
-              key={c.id}
+              key={item.id}
               className="w-64 min-h-80 shadow-2xs p-5 border border-green-500 rounded-2xl flex flex-col gap-5"
             >
               <div className="flex-1 flex items-center justify-center">
-                <img src={c.image} alt={c.label} className="object-contain hover:scale-110 transition duration-300" />
+                <img src={veg1} alt="img" className="object-contain hover:scale-110 transition duration-300" />
               </div>
 
               <div>
                 <p className="text-xs">⌚ 16 MINS</p>
-                <h1 className="font-medium">{c.label}</h1>
-                <p className="text-sm">{c.quantity}</p>
+                <h1 className="font-medium">{item.title}</h1>
+
               </div>
 
               <div className="flex justify-between items-center">
-                <p>💰{c.price}</p>
+                <p>💰{item.price}{item.unit}</p>
 
-                {isInCart(c.id) ? (
+                {isInCart(item.id) ? (
                   <div className="flex items-center border bg-green-700 px-5 py-2 gap-2 text-white rounded-2xl">
-                    <button className="cursor-pointer" onClick={() => decrement(c.id)}>-</button>
-                    <p>{getQty(c.id)}</p>
-                    <button className="cursor-pointer" onClick={() => increment(c.id)}>+</button>
+                    <button className="cursor-pointer" onClick={() => decrement(item.id)}>-</button>
+                    <p>{getQty(item.id)}</p>
+                    <button className="cursor-pointer" onClick={() => increment(item.id)}>+</button>
                   </div>
                 ) : (
                   <button
-                    onClick={() => addToCart(c.id)}
+                    onClick={() => addToCart(item.id)}
                     className="border border-green-600 bg-green-100 text-green-500 cursor-pointer px-5 py-2 rounded-xl"
                   >
                     ADD

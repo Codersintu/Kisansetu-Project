@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import './App.css'
 import Navbar from './component/Navbar'
 import Home from './pages/Home'
@@ -6,17 +6,29 @@ import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Product from './pages/Product'
 import SelectedProduct from './component/SelectedProduct'
+import { useEffect } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { IsLoggedIn } from './atom'
 
 function App() {
- const user=true
+  const setisLoggedIn=useSetRecoilState<boolean>(IsLoggedIn)
+  const isLoggedIn=useRecoilValue(IsLoggedIn)
+  const navigate=useNavigate()
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setisLoggedIn(true);
+      navigate("/")
+    }
+  }, [isLoggedIn]);
+
 
   return (
     <>
-    <Navbar user={user}/>
+    <Navbar/>
     
     <Routes>
-      {user===true &&
-      <Route path='/' element={<Home/>}/>}
+      <Route path='/' element={<Home/>}/>
       <Route path='/signin' element={<SignIn/>}/>
       <Route path='/signup' element={<SignUp/>}/>
       <Route path='/category' element={<SelectedProduct/>}/>

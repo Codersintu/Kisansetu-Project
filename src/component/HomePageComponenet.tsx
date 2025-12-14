@@ -4,8 +4,11 @@ import veg1 from "../assets/veg1.png"
 import veg2 from "../assets/veg2.png"
 import veg3 from "../assets/veg.png"
 import { Link } from "react-router-dom"
+import { useRecoilValue } from "recoil"
+import { IsLoggedIn } from "../atom"
 
 function HomePageComponenet() {
+  const isLoggedIn=useRecoilValue(IsLoggedIn)
   return (
       <div id="home" className="flex-1 min-h-[calc(100vh-70px)] bg-green-100 md:rounded-[99%_10%_100%_0%/0%_0%_100%_100%] overflow-hidden ">
 
@@ -50,6 +53,7 @@ function HomePageComponenet() {
           </div>
       
         </div>
+        {!isLoggedIn &&
          <div className="absolute md:hidden bottom-0 w-full flex justify-around mb-3">
           <Link to="/signup">
           <button className="px-10 border-2 font-bold rounded-2xl cursor-pointer">SignUp</button>
@@ -58,6 +62,7 @@ function HomePageComponenet() {
           <button className="px-10 border-2 font-bold rounded-2xl cursor-pointer">Log In</button>
           </Link>
          </div>
+}
       </div>
   )
 }

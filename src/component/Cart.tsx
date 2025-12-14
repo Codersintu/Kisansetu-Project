@@ -1,15 +1,16 @@
 import { useRecoilValue } from "recoil";
-import { CartItem } from "../atom";
-import { categories } from "./SelectedProduct";
+import { CartItem, ProductItem } from "../atom";
+
 import { useState } from "react";
 import OrderPlaced from "./OrderPlaced";
 
 function Cart({ setIsCartOpen }:any) {
+  const productsItem=useRecoilValue(ProductItem)
   const cart = useRecoilValue(CartItem);
  const [showOrder, setShowOrder] = useState(false);
   // CALCULATE TOTAL PRICE
   const itemsTotal = Object.entries(cart).reduce<number>((total, [id, qty]) => {
-    const found = categories.find((x) => x.id === Number(id));
+    const found = productsItem.find((x) => x.id === Number(id));
     return total + (found ? found.price * (qty as number) : 0);
   }, 0);
 
@@ -55,11 +56,11 @@ function Cart({ setIsCartOpen }:any) {
         {/* ITEM LIST — unchanged */}
         <div className="mt-2">
           {Object.entries(cart).map(([id, qty]) => {
-            const found = categories.find((x) => x.id === Number(id));
+            const found = productsItem.find((x) => x.id === Number(id));
 
             return found ? (
               <div key={id} className="flex justify-between items-center py-1">
-                <span className="text-sm">{found.label}</span>
+                <span className="text-sm">{found.title}</span>
                 <span className="font-semibold text-sm">
                   {found.quantity} ❎ {qty as number}
                 </span>
