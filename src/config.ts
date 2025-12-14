@@ -1,1 +1,1 @@
-export const BACKEND_URL="http://localhost:3000"
+export const BACKEND_URL="https://kisansetu-backend-6r1v.onrender.com"
