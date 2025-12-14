@@ -3,18 +3,12 @@ import ShoppingCart from "../assets/trolley.png"
 import logo from "../assets/logo.png"
 import menu from "../assets/menu.png"
 import cancel from "../assets/cancel.png"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "motion/react"
 import { Link, useLocation } from "react-router-dom"
 import GeoLocation from "./GeoLocation";
 import Cart from "./Cart"
-const placeholderTexts = [
-  "apple juice",
-  "milk",
-  "bread",
-  "fresh vegetables",
-  "chips"
-];
+
 interface navbarprops{
   user:boolean
 }
@@ -22,27 +16,15 @@ export default function Navbar({user}:navbarprops) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
   const [locationCard,setlocationCard]=useState(false)
-  const [fade, setFade] = useState(false)
   const {Location,Error,refresh}=GeoLocation()
   const location = useLocation();
   const isProductPage = location.pathname === "/category";
-  const [index, setIndex] = useState(0);
 
   if(Error){
     return 
   }
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(false);
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % placeholderTexts.length);
-        setFade(true);
-      }, 500);
-    }, 1500);
-
-    return () => clearInterval(interval);
-  }, []);
+  
   return (
     <>
       <div className="max-w-full max-h-[70px] bg-white shadow-sm py-3 md:px-6 px-2 md:flex md:items-center md:justify-between flex justify-between sticky top-0 z-50">
@@ -72,7 +54,7 @@ export default function Navbar({user}:navbarprops) {
           </ul>
         )}
         {isProductPage && (
-          <div className="flex items-center gap-3 w-1/2">
+          <div className="items-center gap-3 w-1/2 hidden md:flex">
 
             {/* LOCATION */}
             <div onClick={()=>setlocationCard(true)} className="flex items-center w-24 cursor-pointer">
@@ -91,8 +73,8 @@ export default function Navbar({user}:navbarprops) {
                 <span className="text-gray-500 mr-2">🔍</span>
                 <input
                   type="text"
-                  placeholder={`Search for “${placeholderTexts[index]}”`}
-                  className={`w-full outline-none transition-opacity duration-300 ${fade ? "opacity-100" : "opacity-0"}`}
+                  placeholder={`Search for products...`}
+                  className={`w-full outline-none transition-opacity duration-300`}
                 />
               </div>
             </div>
