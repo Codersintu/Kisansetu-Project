@@ -1,21 +1,57 @@
-import { useRecoilValue } from "recoil";
-import { CartItem, ProductItem } from "../atom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { CartItem, PlacedItem, ProductItem } from "../atom";
 
 import { useState } from "react";
 import OrderPlaced from "./OrderPlaced";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
 
 function Cart({ setIsCartOpen }:any) {
-  const productsItem=useRecoilValue(ProductItem)
+  const productsItem=useRecoilValue(ProductItem);
+  const setplacedItem=useSetRecoilState(PlacedItem);
+  const placedItem=useRecoilValue(PlacedItem);
+  console.log("placedItem in cart:", placedItem);
+  const [Error,setError]=useState<string|null>(null);
+  const [message,setMessage]=useState<string|null>(null);
+  const [Loadable,setLoadable]=useState<boolean>(false);
   const cart = useRecoilValue(CartItem);
- const [showOrder, setShowOrder] = useState(false);
-  // CALCULATE TOTAL PRICE
-  const itemsTotal = Object.entries(cart).reduce<number>((total, [id, qty]) => {
-    const found = productsItem.find((x) => x.id === Number(id));
-    return total + (found ? found.price * (qty as number) : 0);
-  }, 0);
-
-  const handlingCharge = 2;
-  const grandTotal = itemsTotal + handlingCharge;
+  const setcart=useSetRecoilState(CartItem);
+  const [showOrder, setShowOrder] = useState(false);
+ const handlingCharge=20;
+ const grandTotal= (placedItem?.total || 0) + handlingCharge;
+ const handlePlaceOrder = async() => {
+    try {
+      setLoadable(true);
+      setError(null);
+      setMessage(null);
+      const items=Object.entries(cart).map(([id, qty])=>({productId:Number(id),quantity:qty as number}));
+      console.log("Placing order with items:", items);
+      if (items.length===0) {
+        setError("Cart is empty");
+        setLoadable(false);
+        return;
+      }
+       const response= await axios.post(`${BACKEND_URL}/api/order/create`, {items},
+        {
+          headers: {
+            Authorization: localStorage.getItem('token') || '',
+          }
+        }
+      )
+      setplacedItem(response.data.order)
+      setMessage(response.data.message || "Order placed successfully");
+      setError(null);
+      setcart({});
+      setShowOrder(true);
+      
+    } catch (error:any) {
+      console.log("Error placing order:", error);
+      setError(error.response?.data?.message || "Failed to place order");
+    }finally{
+      setLoadable(false);
+    }
+ }
+  
 
   return (
     <>      {showOrder && <OrderPlaced onClose={() => setShowOrder(false)} />}
@@ -62,7 +98,7 @@ function Cart({ setIsCartOpen }:any) {
               <div key={id} className="flex justify-between items-center py-1">
                 <span className="text-sm">{found.title}</span>
                 <span className="font-semibold text-sm">
-                  {found.quantity} ❎ {qty as number}
+                  {found.price} ❎ {qty as number}
                 </span>
               </div>
             ) : null;
@@ -76,7 +112,7 @@ function Cart({ setIsCartOpen }:any) {
 
         <div className="flex justify-between text-sm py-1">
           <span>Items total</span>
-          <span className="font-medium">₹{itemsTotal}</span>
+          <span className="font-medium">₹{placedItem?.total}</span>
         </div>
 
         <div className="flex justify-between text-sm py-1">
@@ -109,13 +145,15 @@ function Cart({ setIsCartOpen }:any) {
       <div className="absolute bottom-0 left-0 w-full bg-white p-3 shadow-lg">
         <div className="flex items-center justify-between">
 
-          <span className="font-semibold text-lg">₹{grandTotal}</span>
-
-          <button  onClick={() => {setShowOrder(true)}} className="bg-green-600 cursor-pointer text-white px-4 py-2 rounded-xl text-sm font-medium">
-            Click to Buy →
+          <span className="font-semibold text-lg">  ₹{grandTotal}</span>
+          
+          <button  onClick={handlePlaceOrder} className="bg-green-600 cursor-pointer text-white px-4 py-2 rounded-xl text-sm font-medium">
+            {Loadable?"Place Order..." :"Place Order →"}
           </button>
-
+         
         </div>
+      {Error && <p className="text-red-500 text-sm mt-2">{Error}</p>}
+      {message && <p className="text-green-500 text-sm mt-2">{message}</p>}
       </div>
 
     </div>

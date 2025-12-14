@@ -20,6 +20,20 @@ export const UserData=atom({
     key:"userData",
     default:{}
 })
+export interface PlacedItemProps {
+    id:number;
+    buyerId:number;
+    total:number;
+    status:"placed"|"shipped"|"delivered"|"cancelled"|"pending";
+    createdAt:string;
+}
+
+export const PlacedItem=atom<PlacedItemProps | null >({
+    key:"placedItem",
+    default:null
+})
+
+
 export interface ProductItemProps {
   id: number;
   title: string;

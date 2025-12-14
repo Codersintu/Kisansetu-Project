@@ -78,7 +78,7 @@ export default function Navbar() {
           )}
 
           {/* RIGHT ACTIONS (DESKTOP) */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-8">
             {isLoggedIn ? (
               <>
                 <img
