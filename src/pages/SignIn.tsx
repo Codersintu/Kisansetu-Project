@@ -43,7 +43,7 @@ function SignIn() {
   return (
     <div className="min-h-[calc(100vh-70px)] flex items-center justify-center">
       <div className=" bg-white w-full max-w-xs h-auto p-4 shadow-lg border-3  rounded-2xl flex flex-col items-center gap-5">
-        <h1 className="text-3xl font-semibold">Login with E-mail</h1>
+        <h1 className="text-3xl font-semibold">Login with Number</h1>
         <div className="w-48"><img src={logo} alt="" /></div>
         <div className="flex flex-col gap-5 mt-6">
             <input type="text" ref={MobNumberRef} className="w-full px-5 py-1 border border-gray-500 rounded-2xl outline-none"  placeholder="☎️ MobNumber..."/>

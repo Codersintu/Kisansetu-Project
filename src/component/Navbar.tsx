@@ -74,6 +74,7 @@ export default function Navbar() {
                   className="w-full outline-none"
                 />
               </div>
+              
             </div>
           )}
 
@@ -111,8 +112,13 @@ export default function Navbar() {
           </div>
 
           {/* MOBILE MENU BUTTON */}
-          <div className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <img src={isMenuOpen ? cancel : menu} className="w-7" />
+          <div className="md:hidden flex items-center gap-6" >
+            <img
+                  src={ShoppingCart}
+                  className="w-9 cursor-pointer"
+                  onClick={() => setIsCartOpen(true)}
+                />
+            <img onClick={() => setIsMenuOpen(!isMenuOpen)} src={isMenuOpen ? cancel : menu} className="w-7" />
           </div>
         </div>
       </header>
@@ -131,7 +137,15 @@ export default function Navbar() {
           <a className="text-lg font-semibold border-b">Products</a>
           <a className="text-lg font-semibold border-b">About</a>
           <a className="text-lg font-semibold border-b">Contact</a>
+          {isLoggedIn && (
+            <>
+              <button onClick={handleLogout} className="text-lg font-semibold border-b text-left">
+                Logout
+              </button>
+            </>
+          )}
         </motion.div>
+        
       )}
 
       {/* LOCATION MODAL */}

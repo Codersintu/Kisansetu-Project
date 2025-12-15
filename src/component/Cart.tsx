@@ -1,12 +1,14 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { CartItem, PlacedItem, ProductItem } from "../atom";
+import { CartItem, IsLoggedIn, PlacedItem, ProductItem } from "../atom";
 
 import { useState } from "react";
 import OrderPlaced from "./OrderPlaced";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { Link } from "react-router-dom";
 
 function Cart({ setIsCartOpen }:any) {
+    const isLoggedIn=useRecoilValue(IsLoggedIn)
   const productsItem=useRecoilValue(ProductItem);
   const setplacedItem=useSetRecoilState(PlacedItem);
   const placedItem=useRecoilValue(PlacedItem);
@@ -146,10 +148,19 @@ function Cart({ setIsCartOpen }:any) {
         <div className="flex items-center justify-between">
 
           <span className="font-semibold text-lg">  ₹{grandTotal}</span>
+          {isLoggedIn ? (
           
           <button  onClick={handlePlaceOrder} className="bg-green-600 cursor-pointer text-white px-4 py-2 rounded-xl text-sm font-medium">
             {Loadable?"Place Order..." :"Place Order →"}
           </button>
+          ):(
+            <Link to="/signin">
+            <button  onClick={() => {setIsCartOpen(false)}} className="bg-green-600 cursor-pointer text-white px-4 py-2 rounded-xl text-sm font-medium">
+            Log in to Place Order
+          </button>
+            </Link>
+          )}
+          
          
         </div>
       {Error && <p className="text-red-500 text-sm mt-2">{Error}</p>}
