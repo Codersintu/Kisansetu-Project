@@ -1,4 +1,5 @@
 // src/components/BuySellSection.tsx
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 export default function BuySellSection() {
@@ -24,10 +25,11 @@ export default function BuySellSection() {
               By shopping with us, you enjoy high-quality produce while supporting the
               hardworking agricultural community of Patna.
             </p>
-
+             <Link to="/category">
             <button className="mt-5 cursor-pointer inline-flex items-center justify-center rounded-full border border-green-600 bg-white px-14 py-4 text-sm font-medium text-green-700 hover:bg-green-600 hover:text-white transition">
               Buy
             </button>
+            </Link>
           </div>
         </div>
 
