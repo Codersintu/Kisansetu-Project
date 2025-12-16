@@ -53,10 +53,11 @@ export default function BuySellSection() {
               prices, foster sustainable agriculture, and build a community that supports
               responsible farming.
             </p>
-
+            <Link to="/sellerpage">
             <button className="mt-5 inline-flex items-center justify-center rounded-full border border-green-600 bg-white px-14 py-4 cursor-pointer text-sm font-medium text-green-700 hover:bg-green-600 hover:text-white transition">
               Sell
             </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import SelectedProduct from './component/SelectedProduct'
 import { useEffect } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { IsLoggedIn } from './atom'
+import SellerPage from './pages/SellerPage'
 
 function App() {
   const setisLoggedIn=useSetRecoilState<boolean>(IsLoggedIn)
@@ -33,6 +34,7 @@ function App() {
       <Route path='/signup' element={<SignUp/>}/>
       <Route path='/category' element={<SelectedProduct/>}/>
       <Route path='/product' element={<Product/>}/>
+      <Route path='/sellerpage' element={<SellerPage/>}/>
       </Routes>
 
     </>
